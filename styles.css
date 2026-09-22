@@ -529,26 +529,127 @@ h1, h2, h3, blockquote {
 .methode h2 { color: var(--creme); }
 .methode .script { color: var(--ambre); }
 
+.methode-head {
+  display: grid;
+  grid-template-columns: 1.2fr 0.8fr;
+  gap: 50px;
+  align-items: end;
+  margin-bottom: 60px;
+}
+.methode-intro {
+  color: rgba(250, 245, 236, 0.72);
+  font-size: 1rem;
+  padding-bottom: 8px;
+}
+
 .steps {
   display: grid;
-  grid-template-columns: 1fr 110px 1fr 110px 1fr;
-  gap: 10px;
-  align-items: start;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 48px;
+  align-items: stretch;
 }
-.step { text-align: left; }
-.step h3 { font-size: 1.35rem; margin-bottom: 10px; }
-.step h3 em { color: var(--ambre); margin-right: 4px; }
-.step p { color: rgba(250, 245, 236, 0.72); font-size: 0.95rem; }
-.step-lien { color: var(--ambre); margin-top: 46px; opacity: 0.8; }
+.step {
+  position: relative;
+  background: rgba(250, 245, 236, 0.05);
+  border: 1.5px dashed rgba(250, 245, 236, 0.28);
+  border-radius: 26px;
+  padding: 28px 26px 30px;
+  overflow: hidden;
+  transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1), border-color 0.35s ease, background 0.35s ease;
+}
+.step:hover {
+  transform: translateY(-8px);
+  border-color: var(--ambre);
+  background: rgba(250, 245, 236, 0.08);
+}
+/* flèches de liaison entre les cartes, posées sur la grille */
+.steps { position: relative; }
+.steps::before,
+.steps::after {
+  content: "→";
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 1.5rem;
+  color: var(--ambre);
+  z-index: 2;
+}
+.steps::before { left: calc(33.333% - 8px); }
+.steps::after { left: calc(66.666% + 8px); }
+.step-filigrane {
+  position: absolute;
+  top: -26px;
+  right: 10px;
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 8.5rem;
+  line-height: 1;
+  color: rgba(250, 245, 236, 0.07);
+  pointer-events: none;
+}
+.step-badge {
+  display: inline-block;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--ambre);
+  border: 1.5px solid rgba(233, 161, 59, 0.5);
+  border-radius: 999px;
+  padding: 5px 14px;
+  margin-bottom: 20px;
+}
+.step h3 { font-size: 1.35rem; margin-bottom: 10px; color: var(--creme); }
+.step p { color: rgba(250, 245, 236, 0.72); font-size: 0.93rem; margin-bottom: 18px; }
+.step-lien-txt {
+  display: inline-block;
+  color: var(--ambre);
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.9rem;
+  border-bottom: 1.5px dashed rgba(233, 161, 59, 0.5);
+  padding-bottom: 2px;
+  transition: border-color 0.3s ease;
+}
+a.step-lien-txt:hover { border-bottom-style: solid; border-color: var(--ambre); }
+
+.methode-cta {
+  margin-top: 64px;
+  border: 1.5px dashed rgba(250, 245, 236, 0.3);
+  border-radius: 999px;
+  padding: 22px 36px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 26px;
+  flex-wrap: wrap;
+}
+.methode-cta > p {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: clamp(1.2rem, 2.4vw, 1.6rem);
+  color: var(--creme);
+}
+.methode-cta-droite {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+.methode-note { font-size: 0.85rem; color: rgba(250, 245, 236, 0.6); }
 
 /* — vignettes animées thème nettoyage — */
 .step-anim {
-  height: 116px;
-  margin-bottom: 20px;
+  height: 132px;
+  margin-bottom: 22px;
   display: flex;
-  align-items: flex-end;
+  align-items: center;
+  justify-content: center;
+  background: rgba(20, 33, 24, 0.45);
+  border-radius: 18px;
+  overflow: hidden;
 }
-.step-anim svg { height: 100%; width: auto; overflow: visible; }
+.step-anim svg { height: 86%; width: auto; overflow: visible; }
 .trait {
   stroke: var(--creme);
   stroke-width: 2.6;
@@ -892,8 +993,10 @@ a.coord-item:hover { transform: translateX(6px); }
   .hero-in { grid-template-columns: 1fr; gap: 70px; }
   .hero-art { order: 2; }
   .tag { right: 6%; }
-  .steps { grid-template-columns: 1fr; gap: 44px; }
-  .step-lien { display: none; }
+  .methode-head { grid-template-columns: 1fr; gap: 18px; margin-bottom: 44px; }
+  .steps { grid-template-columns: 1fr; gap: 30px; }
+  .steps::before, .steps::after { display: none; }
+  .methode-cta { border-radius: 30px; justify-content: center; text-align: center; }
   .zone-in, .contact-in { grid-template-columns: 1fr; gap: 56px; }
   .srv-wrap { grid-template-columns: 1fr; gap: 40px; }
   .srv-panel { position: static; }
