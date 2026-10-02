@@ -1,39 +1,72 @@
 <!DOCTYPE html>
-<html lang="fr" data-theme="foret">
+<html lang="fr" data-theme="mmg">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>MMG Nettoyage — Votre propreté, notre priorité | Île-de-France</title>
-  <meta name="description" content="MMG Nettoyage, entreprise de nettoyage en Île-de-France : bureaux, maisons, vitres, fin de chantier, désinfection. Travail soigné, devis gratuit — 06 22 17 97 11." />
+  <title>MMG Nettoyage — Entreprise de nettoyage en Île-de-France</title>
+  <meta name="description" content="MMG Nettoyage, entreprise de nettoyage en Île-de-France : bureaux, maisons, vitres, après travaux, fin de chantier, désinfection. Devis gratuit — 06 22 17 97 11." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,400;1,9..144,500;1,9..144,600&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link id="themeFonts" rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800&family=Source+Sans+3:wght@400;600;700&display=swap" />
   <link rel="stylesheet" href="styles.css" />
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='48' fill='%232c6e49'/><text x='50' y='66' font-size='44' text-anchor='middle' fill='%23fbf7f0' font-family='Georgia' font-weight='bold'>M</text></svg>" />
+  <link rel="icon" href="assets/logo-crop.jpg" />
   <script>
-    document.documentElement.dataset.theme = localStorage.getItem("mmg-theme") || "foret";
+    // thème mémorisé, appliqué avant l'affichage
+    window.MMG_FONTS = {
+      mmg: "family=Montserrat:wght@600;700;800&family=Source+Sans+3:wght@400;600;700",
+      atelier: "family=Archivo:wght@500;700;800&family=IBM+Plex+Sans:wght@400;500;600",
+      terracotta: "family=DM+Serif+Display&family=Work+Sans:wght@400;500;600",
+      pro: "family=Barlow+Condensed:wght@600;700&family=Barlow:wght@400;500;600",
+      nuit: "family=Anton&family=Karla:wght@400;500;700",
+      menthe: "family=Lexend:wght@400;500;600;700"
+    };
+    try {
+      var t = localStorage.getItem("mmg-theme-v3");
+      if (t && window.MMG_FONTS[t]) {
+        document.documentElement.dataset.theme = t;
+        document.getElementById("themeFonts").href = "https://fonts.googleapis.com/css2?" + window.MMG_FONTS[t] + "&display=swap";
+      }
+    } catch (e) {}
   </script>
 </head>
 <body>
 
-  <div class="grain" aria-hidden="true"></div>
+  <!-- ═══════════ BANDEAU HAUT ═══════════ -->
+  <div class="topbar">
+    <div class="wrap topbar-in">
+      <span>Entreprise de nettoyage · Île-de-France · 7j/7</span>
+      <span class="topbar-links">
+        <a href="mailto:moussamagassa2001@gmail.com">moussamagassa2001@gmail.com</a>
+        <a href="tel:0622179711">06 22 17 97 11</a>
+      </span>
+    </div>
+  </div>
 
-  <!-- ═══════════ NAVIGATION ═══════════ -->
-  <header class="nav" id="nav">
-    <div class="wrap nav-in">
-      <a href="#haut" class="brand">
-        <span class="brand-mark">M</span>
-        <span class="brand-name">MMG <em>Nettoyage</em></span>
+  <!-- ═══════════ EN-TÊTE ═══════════ -->
+  <header class="header" id="header">
+    <div class="wrap header-in">
+      <a href="#haut" class="brand" aria-label="MMG Nettoyage — accueil">
+        <svg class="brand-mark" viewBox="0 0 48 48" aria-hidden="true">
+          <path class="bm-house" d="M24 7 5 23h5v18h28V23h5L36 16.6V9h-4v4.2z"/>
+          <path class="bm-spark" d="M38.5 1.5c.3 2.4 1.4 3.6 3.8 4-2.4.4-3.5 1.6-3.8 4-.3-2.4-1.4-3.6-3.8-4 2.4-.4 3.5-1.6 3.8-4z"/>
+          <path d="M28 18.5 22.4 34" stroke="#fff" stroke-width="2.2" stroke-linecap="round"/>
+          <path class="bm-spark" d="M19.5 32.4 26 34.8l-2.2 5.2h-7.5z"/>
+        </svg>
+        <span class="brand-txt">MMG <span>Nettoyage</span></span>
       </a>
-      <nav class="nav-menu" id="navMenu">
+
+      <nav class="menu" id="menu" aria-label="Navigation principale">
         <a href="#services">Services</a>
-        <a href="#methode">Notre méthode</a>
+        <a href="#engagements">Engagements</a>
+        <a href="#methode">Méthode</a>
         <a href="#zone">Zone</a>
-        <a href="#contact">Contact</a>
-        <a href="#contact" class="btn btn-dark btn-nav"><span>Devis gratuit</span></a>
+        <a href="#faq">FAQ</a>
+        <a href="#contact" class="menu-devis">Devis gratuit</a>
       </nav>
-      <button class="burger" id="burger" aria-label="Menu" aria-expanded="false">
-        <span></span><span></span>
+
+      <a href="#contact" class="btn btn-accent header-cta">Devis gratuit</a>
+      <button class="burger" id="burger" type="button" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="menu">
+        <span></span><span></span><span></span>
       </button>
     </div>
   </header>
@@ -42,305 +75,246 @@
 
     <!-- ═══════════ HÉRO ═══════════ -->
     <section class="hero">
-      <div class="blob blob-a" aria-hidden="true"></div>
-      <div class="blob blob-b" aria-hidden="true"></div>
-
       <div class="wrap hero-in">
         <div class="hero-txt">
-          <p class="eyebrow reveal">Entreprise de nettoyage — Île-de-France</p>
-          <h1 class="reveal">
-            Un espace <em class="hl">propre</em>,<br />
-            un esprit <em class="script">léger.</em>
-          </h1>
-          <p class="hero-p reveal">
-            Bureaux, maisons, vitres, fins de chantier… MMG Nettoyage prend soin
-            de vos espaces comme s'ils étaient les nôtres. Travail soigné,
-            délais tenus, et toujours le sourire.
+          <p class="overline">Bureaux · Maisons · Vitres · Chantiers</p>
+          <h1>Entreprise de nettoyage en <span class="nowrap">Île-de-France</span></h1>
+          <p class="hero-p">
+            MMG Nettoyage intervient chez les particuliers et les professionnels
+            dans toute l'Île-de-France. Entretien régulier, lavage de vitres,
+            nettoyage après travaux ou fin de chantier : on s'occupe de tout,
+            avec soin et dans les délais.
           </p>
-          <div class="hero-cta reveal">
-            <a href="#contact" class="btn btn-amber"><span>Obtenir mon devis gratuit</span></a>
-            <a href="tel:0622179711" class="link-phone">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+          <div class="hero-cta">
+            <a href="#contact" class="btn btn-accent">Demander un devis gratuit</a>
+            <a href="tel:0622179711" class="btn btn-line">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
               06 22 17 97 11
             </a>
           </div>
-          <ul class="hero-points reveal">
-            <li>Travail soigné</li>
-            <li>Respect des délais</li>
-            <li>Devis gratuit</li>
-          </ul>
+        </div>
+        <figure class="hero-img">
+          <img src="https://images.unsplash.com/photo-1581578731548-c64695cc6952?auto=format&fit=crop&w=1000&q=75" alt="Agent d'entretien nettoyant une fenêtre" />
+        </figure>
+      </div>
+
+      <div class="wrap">
+        <ul class="facts">
+          <li><strong>Devis gratuit</strong><span>Réponse sous 24h, sans engagement</span></li>
+          <li><strong>7 jours sur 7</strong><span>Interventions selon vos horaires</span></li>
+          <li><strong>Île-de-France</strong><span>Les 8 départements couverts</span></li>
+          <li><strong>Particuliers &amp; pros</strong><span>Ponctuel ou régulier</span></li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ═══════════ SERVICES ═══════════ -->
+    <section class="section" id="services">
+      <div class="wrap">
+        <div class="head">
+          <p class="overline">01 — Nos services</p>
+          <h2>Ce que nous nettoyons</h2>
+          <p class="head-p">Cinq prestations, pour les particuliers comme pour les entreprises. Chaque devis est adapté à votre lieu et à votre besoin.</p>
         </div>
 
-        <div class="hero-art reveal">
-          <div class="arch">
-            <img class="arch-img" src="https://images.unsplash.com/photo-1581578731548-c64695cc6952?auto=format&fit=crop&w=800&q=75" alt="Nettoyage professionnel d'une surface avec gants et produit" loading="eager" />
-            <svg class="spark spark-1" viewBox="0 0 40 40" aria-hidden="true"><path d="M20 0 L24 16 L40 20 L24 24 L20 40 L16 24 L0 20 L16 16 Z" fill="currentColor"/></svg>
-            <svg class="spark spark-2" viewBox="0 0 40 40" aria-hidden="true"><path d="M20 0 L24 16 L40 20 L24 24 L20 40 L16 24 L0 20 L16 16 Z" fill="currentColor"/></svg>
-            <svg class="spark spark-3" viewBox="0 0 40 40" aria-hidden="true"><path d="M20 0 L24 16 L40 20 L24 24 L20 40 L16 24 L0 20 L16 16 Z" fill="currentColor"/></svg>
-          </div>
-
-          <!-- badge circulaire tournant -->
-          <div class="stamp" aria-hidden="true">
-            <svg viewBox="0 0 120 120">
-              <defs><path id="cercle" d="M 60,60 m -44,0 a 44,44 0 1,1 88,0 a 44,44 0 1,1 -88,0" /></defs>
-              <text class="stamp-txt"><textPath href="#cercle">DEVIS GRATUIT • ÎLE-DE-FRANCE •</textPath></text>
-            </svg>
-            <span class="stamp-heart">✦</span>
-          </div>
-
-          <div class="tag tag-1">Depuis toujours,<br/>le goût du travail bien fait</div>
+        <div class="services">
+          <article class="service">
+            <div class="service-img"><img src="https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=800&q=70" alt="Bureaux lumineux" loading="lazy" /></div>
+            <div class="service-body">
+              <h3>Bureaux &amp; maisons</h3>
+              <p>Entretien régulier ou ponctuel de vos locaux et de votre domicile : sols, surfaces, sanitaires, dépoussiérage.</p>
+              <a href="#contact" class="more" data-service="Nettoyage de bureaux et de maisons">Demander un devis →</a>
+            </div>
+          </article>
+          <article class="service">
+            <div class="service-img"><img src="https://images.unsplash.com/photo-1524758631624-e2822e304c36?auto=format&fit=crop&w=800&q=70" alt="Grandes baies vitrées" loading="lazy" /></div>
+            <div class="service-body">
+              <h3>Lavage de vitres</h3>
+              <p>Vitres, baies vitrées et vitrines sans traces. Encadrements et rebords compris.</p>
+              <a href="#contact" class="more" data-service="Lavage de vitres">Demander un devis →</a>
+            </div>
+          </article>
+          <article class="service">
+            <div class="service-img"><img src="https://images.unsplash.com/photo-1504148455328-c376907d081c?auto=format&fit=crop&w=800&q=70" alt="Outils de chantier" loading="lazy" /></div>
+            <div class="service-body">
+              <h3>Nettoyage après travaux</h3>
+              <p>Poussières fines, résidus de plâtre, traces de peinture : on efface le chantier, il ne reste que le résultat.</p>
+              <a href="#contact" class="more" data-service="Nettoyage après travaux">Demander un devis →</a>
+            </div>
+          </article>
+          <article class="service">
+            <div class="service-img"><img src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=800&q=70" alt="Bâtiment en fin de construction" loading="lazy" /></div>
+            <div class="service-body">
+              <h3>Fin de chantier</h3>
+              <p>Remise en état complète avant livraison, pour un lieu prêt à être occupé dès le premier jour.</p>
+              <a href="#contact" class="more" data-service="Nettoyage de fin de chantier">Demander un devis →</a>
+            </div>
+          </article>
+          <article class="service">
+            <div class="service-img"><img src="https://images.unsplash.com/photo-1584622650111-993a426fbf0a?auto=format&fit=crop&w=800&q=70" alt="Désinfection d'une surface" loading="lazy" /></div>
+            <div class="service-body">
+              <h3>Désinfection &amp; remise en état</h3>
+              <p>Désinfection des surfaces de contact et remise à neuf, pour un environnement sain.</p>
+              <a href="#contact" class="more" data-service="Désinfection et remise en état">Demander un devis →</a>
+            </div>
+          </article>
+          <aside class="service service-call">
+            <h3>Un besoin particulier ?</h3>
+            <p>Appelez-nous, on étudie chaque demande et on vous propose une solution adaptée.</p>
+            <a href="tel:0622179711" class="service-call-tel">06 22 17 97 11</a>
+          </aside>
         </div>
       </div>
     </section>
 
-    <!-- ═══════════ BANDEAU DÉFILANT ═══════════ -->
-    <div class="marquee" aria-hidden="true">
-      <div class="marquee-track">
-        <span>Travail soigné ✦ Respect des délais ✦ Devis gratuit ✦ Île-de-France ✦ Bureaux &amp; maisons ✦ Vitres ✦ Fin de chantier ✦ Désinfection ✦&nbsp;</span>
-        <span>Travail soigné ✦ Respect des délais ✦ Devis gratuit ✦ Île-de-France ✦ Bureaux &amp; maisons ✦ Vitres ✦ Fin de chantier ✦ Désinfection ✦&nbsp;</span>
-      </div>
-    </div>
-
-    <!-- ═══════════ SERVICES ═══════════ -->
-    <section class="services" id="services">
+    <!-- ═══════════ ENGAGEMENTS ═══════════ -->
+    <section class="section band" id="engagements">
       <div class="wrap">
-        <div class="sec-head reveal">
-          <p class="eyebrow">( Nos services )</p>
-          <h2>Ce que nous <em class="script">nettoyons</em> pour vous</h2>
+        <div class="head">
+          <p class="overline">02 — Nos engagements</p>
+          <h2>Trois promesses, tenues à chaque intervention</h2>
         </div>
-
-        <div class="srv-wrap">
-          <div class="srv-nav reveal" role="tablist" aria-label="Nos services">
-            <button class="srv-item actif" type="button" data-srv="0">
-              <span class="srv-num">01</span>
-              <span class="srv-titre">Bureaux &amp; maisons</span>
-              <span class="srv-plus" aria-hidden="true">→</span>
-            </button>
-            <button class="srv-item" type="button" data-srv="1">
-              <span class="srv-num">02</span>
-              <span class="srv-titre">Lavage de vitres</span>
-              <span class="srv-plus" aria-hidden="true">→</span>
-            </button>
-            <button class="srv-item" type="button" data-srv="2">
-              <span class="srv-num">03</span>
-              <span class="srv-titre">Nettoyage après travaux</span>
-              <span class="srv-plus" aria-hidden="true">→</span>
-            </button>
-            <button class="srv-item" type="button" data-srv="3">
-              <span class="srv-num">04</span>
-              <span class="srv-titre">Fin de chantier</span>
-              <span class="srv-plus" aria-hidden="true">→</span>
-            </button>
-            <button class="srv-item" type="button" data-srv="4">
-              <span class="srv-num">05</span>
-              <span class="srv-titre">Désinfection &amp; remise en état</span>
-              <span class="srv-plus" aria-hidden="true">→</span>
-            </button>
-            <p class="srv-astuce">Survolez ou touchez un service pour le découvrir ✦</p>
+        <div class="promises">
+          <div class="promise">
+            <span class="promise-n">1</span>
+            <h3>Travail soigné</h3>
+            <p>Chaque recoin compte. On travaille avec méthode et des produits professionnels, et on contrôle avant de partir.</p>
           </div>
-
-          <div class="srv-panel reveal" id="srvPanel">
-            <div class="srv-media">
-              <img id="srvImg" src="" alt="" loading="lazy" />
-            </div>
-            <div class="panel-in">
-              <h3 id="srvTitre"></h3>
-              <p id="srvDesc"></p>
-              <ul class="srv-tags" id="srvTags"></ul>
-              <a href="#contact" class="btn btn-vert"><span>Demander un devis pour ce service</span></a>
-            </div>
+          <div class="promise">
+            <span class="promise-n">2</span>
+            <h3>Respect des délais</h3>
+            <p>On arrive à la date et à l'heure convenues. Votre planning reste le vôtre.</p>
+          </div>
+          <div class="promise">
+            <span class="promise-n">3</span>
+            <h3>Devis gratuit</h3>
+            <p>Une estimation claire et détaillée sous 24h, sans engagement. Pas de surprise sur la facture.</p>
           </div>
         </div>
+        <blockquote class="quote">
+          <p>« Votre propreté, notre priorité ! »</p>
+          <cite>Moussa, fondateur de MMG Nettoyage</cite>
+        </blockquote>
       </div>
     </section>
 
     <!-- ═══════════ MÉTHODE ═══════════ -->
-    <section class="methode" id="methode">
+    <section class="section" id="methode">
       <div class="wrap">
-        <div class="methode-head reveal">
-          <div>
-            <p class="eyebrow">( Comment ça marche )</p>
-            <h2>Simple comme <em class="script">un, deux, trois</em></h2>
-          </div>
-          <p class="methode-intro">
-            Pas de paperasse, pas d'attente. Trois étapes suffisent pour
-            retrouver des espaces impeccables — et vous n'avez rien à faire,
-            ou presque.
-          </p>
+        <div class="head">
+          <p class="overline">03 — Comment ça marche</p>
+          <h2>Trois étapes, c'est tout</h2>
         </div>
-        <div class="steps">
-          <article class="step reveal">
-            <span class="step-filigrane" aria-hidden="true">1</span>
-            <span class="step-badge">Étape 1</span>
-            <!-- téléphone qui sonne -->
-            <div class="step-anim" aria-hidden="true">
-              <svg viewBox="0 0 130 100">
-                <g class="anim-tel">
-                  <path class="trait" vector-effect="non-scaling-stroke" d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z" transform="translate(28,26) scale(2.25)" fill="none"/>
-                </g>
-                <path class="trait accent onde o1" d="M86 26a16 16 0 0 1 9 13" fill="none"/>
-                <path class="trait accent onde o2" d="M94 18a26 26 0 0 1 14 21" fill="none"/>
-                <path class="trait accent onde o3" d="M102 10a36 36 0 0 1 19 29" fill="none"/>
-              </svg>
-            </div>
-            <h3>Vous nous appelez</h3>
-            <p>Un coup de fil ou un e-mail, et on discute de votre besoin : type de local, surface, fréquence.</p>
-            <a href="tel:0622179711" class="step-lien-txt">06 22 17 97 11 →</a>
-          </article>
-
-          <article class="step reveal">
-            <span class="step-filigrane" aria-hidden="true">2</span>
-            <span class="step-badge">Étape 2</span>
-            <!-- devis qui s'écrit puis se valide -->
-            <div class="step-anim" aria-hidden="true">
-              <svg viewBox="0 0 130 100">
-                <rect class="trait" x="38" y="8" width="54" height="74" rx="7" fill="rgba(250,245,236,0.05)"/>
-                <line class="trait ligne l1" x1="48" y1="26" x2="82" y2="26"/>
-                <line class="trait ligne l2" x1="48" y1="40" x2="82" y2="40"/>
-                <line class="trait ligne l3" x1="48" y1="54" x2="72" y2="54"/>
-                <g class="coche">
-                  <circle class="coche-fond" cx="88" cy="70" r="14"/>
-                  <path class="coche-trait" d="M81 70l5 5 9-10" fill="none" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
-                </g>
-              </svg>
-            </div>
-            <h3>Devis gratuit sous 24h</h3>
-            <p>Vous recevez une estimation claire, détaillée et sans engagement. Pas de surprise, jamais.</p>
-            <a href="#contact" class="step-lien-txt">Demander mon devis →</a>
-          </article>
-
-          <article class="step reveal">
-            <span class="step-filigrane" aria-hidden="true">3</span>
-            <span class="step-badge">Étape 3</span>
-            <!-- vitre essuyée par une raclette + étincelles -->
-            <div class="step-anim" aria-hidden="true">
-              <svg viewBox="0 0 130 100">
-                <defs>
-                  <clipPath id="vitreClip"><rect x="24" y="14" width="76" height="62" rx="5"/></clipPath>
-                </defs>
-                <rect class="trait" x="24" y="14" width="76" height="62" rx="5" fill="rgba(250,245,236,0.05)"/>
-                <g clip-path="url(#vitreClip)">
-                  <rect class="bande" x="-30" y="6" width="22" height="80" fill="rgba(250,245,236,0.28)" transform="skewX(-14)"/>
-                </g>
-                <g class="raclette">
-                  <line x1="30" y1="18" x2="30" y2="72" stroke="currentColor" stroke-width="5" stroke-linecap="round"/>
-                  <line x1="30" y1="45" x2="44" y2="45" stroke="currentColor" stroke-width="4" stroke-linecap="round"/>
-                </g>
-                <path class="etincelle e1" d="M46 34l2.2 6 6 2.2-6 2.2-2.2 6-2.2-6-6-2.2 6-2.2z"/>
-                <path class="etincelle e2" d="M66 52l1.8 5 5 1.8-5 1.8-1.8 5-1.8-5-5-1.8 5-1.8z"/>
-                <path class="etincelle e3" d="M84 30l1.5 4 4 1.5-4 1.5-1.5 4-1.5-4-4-1.5 4-1.5z"/>
-              </svg>
-            </div>
-            <h3>On fait briller</h3>
-            <p>Notre équipe intervient à la date convenue et ne repart que lorsque tout est impeccable.</p>
-            <span class="step-lien-txt">Résultat garanti ✦</span>
-          </article>
-        </div>
-
-        <div class="methode-cta reveal">
-          <p>Prêt à faire briller vos locaux ?</p>
-          <div class="methode-cta-droite">
-            <a href="tel:0622179711" class="btn btn-amber"><span>Appeler le 06 22 17 97 11</span></a>
-            <span class="methode-note">Réponse sous 24h — devis gratuit</span>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- ═══════════ CITATION ═══════════ -->
-    <section class="citation">
-      <div class="wrap reveal">
-        <svg class="citation-spark" viewBox="0 0 40 40" aria-hidden="true"><path d="M20 0 L24 16 L40 20 L24 24 L20 40 L16 24 L0 20 L16 16 Z" fill="currentColor"/></svg>
-        <blockquote>
-          « Votre <em>propreté</em>,<br />notre <em>priorité</em> ! »
-        </blockquote>
-        <p class="citation-sign">— Moussa, fondateur de MMG Nettoyage</p>
+        <ol class="steps">
+          <li>
+            <span class="step-n">Étape 1</span>
+            <h3>Vous nous contactez</h3>
+            <p>Par téléphone, e-mail ou formulaire. Dites-nous le type de lieu, la surface et la fréquence souhaitée.</p>
+          </li>
+          <li>
+            <span class="step-n">Étape 2</span>
+            <h3>Vous recevez le devis</h3>
+            <p>Gratuit, détaillé et sans engagement, sous 24h. Vous décidez tranquillement.</p>
+          </li>
+          <li>
+            <span class="step-n">Étape 3</span>
+            <h3>On intervient</h3>
+            <p>À la date prévue. On ne repart que lorsque tout est propre.</p>
+          </li>
+        </ol>
       </div>
     </section>
 
     <!-- ═══════════ ZONE ═══════════ -->
-    <section class="zone" id="zone">
+    <section class="section band-dark" id="zone">
       <div class="wrap zone-in">
-        <div class="zone-txt reveal">
-          <p class="eyebrow">( Zone d'intervention )</p>
-          <h2>Partout en <em class="script">Île-de-France</em></h2>
-          <p class="zone-p">
-            De Paris au Val-d'Oise, nous nous déplaçons chez vous, à votre domicile
-            comme dans vos locaux professionnels, dans les huit départements franciliens.
-          </p>
-          <a href="tel:0622179711" class="btn btn-vert"><span>On vous rappelle ? 06 22 17 97 11</span></a>
+        <div class="head">
+          <p class="overline">04 — Zone d'intervention</p>
+          <h2>Toute l'Île-de-France</h2>
+          <p class="head-p">De Paris au Val-d'Oise, on se déplace à domicile comme dans vos locaux professionnels.</p>
+          <a href="tel:0622179711" class="btn btn-accent">Appeler le 06 22 17 97 11</a>
         </div>
-        <div class="zone-chips reveal">
-          <span class="chip" style="--r:-2deg">Paris <b>75</b></span>
-          <span class="chip" style="--r:1.5deg">Seine-et-Marne <b>77</b></span>
-          <span class="chip" style="--r:-1deg">Yvelines <b>78</b></span>
-          <span class="chip" style="--r:2deg">Essonne <b>91</b></span>
-          <span class="chip" style="--r:-1.5deg">Hauts-de-Seine <b>92</b></span>
-          <span class="chip" style="--r:1deg">Seine-Saint-Denis <b>93</b></span>
-          <span class="chip" style="--r:-2deg">Val-de-Marne <b>94</b></span>
-          <span class="chip" style="--r:1.5deg">Val-d'Oise <b>95</b></span>
+        <ul class="deps">
+          <li><b>75</b>Paris</li>
+          <li><b>77</b>Seine-et-Marne</li>
+          <li><b>78</b>Yvelines</li>
+          <li><b>91</b>Essonne</li>
+          <li><b>92</b>Hauts-de-Seine</li>
+          <li><b>93</b>Seine-Saint-Denis</li>
+          <li><b>94</b>Val-de-Marne</li>
+          <li><b>95</b>Val-d'Oise</li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- ═══════════ FAQ ═══════════ -->
+    <section class="section" id="faq">
+      <div class="wrap faq-in">
+        <div class="head">
+          <p class="overline">05 — Questions fréquentes</p>
+          <h2>Vos questions</h2>
+          <p class="head-p">Une autre question ? Appelez le <a href="tel:0622179711">06 22 17 97 11</a>.</p>
+        </div>
+        <div class="faq">
+          <details open>
+            <summary>Le devis est-il gratuit ?</summary>
+            <p>Oui, gratuit et sans engagement. Vous le recevez sous 24h avec le détail de la prestation.</p>
+          </details>
+          <details>
+            <summary>Intervenez-vous chez les particuliers ?</summary>
+            <p>Oui. Nous intervenons au domicile des particuliers comme dans les locaux des professionnels : bureaux, commerces, logements à livrer…</p>
+          </details>
+          <details>
+            <summary>Quels jours pouvez-vous intervenir ?</summary>
+            <p>Nous sommes disponibles 7 jours sur 7. On fixe ensemble un créneau qui ne gêne pas votre activité.</p>
+          </details>
+          <details>
+            <summary>Proposez-vous un entretien régulier ?</summary>
+            <p>Oui, pour les bureaux comme pour les maisons. Les interventions ponctuelles sont aussi possibles.</p>
+          </details>
+          <details>
+            <summary>Faut-il fournir les produits ?</summary>
+            <p>Non, nous venons avec nos produits et notre matériel professionnels.</p>
+          </details>
         </div>
       </div>
     </section>
 
     <!-- ═══════════ CONTACT ═══════════ -->
-    <section class="contact" id="contact">
+    <section class="section band" id="contact">
       <div class="wrap contact-in">
-        <div class="contact-txt reveal">
-          <p class="eyebrow">( Contact )</p>
-          <h2>Parlons de <em class="script">votre projet</em></h2>
-          <p class="contact-p">
-            Décrivez-nous votre besoin, nous revenons vers vous rapidement
-            avec un devis gratuit et sans engagement.
-          </p>
+        <div class="head">
+          <p class="overline">06 — Contact</p>
+          <h2>Demandez votre devis</h2>
+          <p class="head-p">Décrivez votre besoin, on vous répond rapidement avec un devis gratuit et sans engagement.</p>
 
-          <div class="coord">
-            <a href="tel:0622179711" class="coord-item">
-              <span class="coord-ico">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-              </span>
-              <span><small>Téléphone</small><br />06 22 17 97 11</span>
-            </a>
-            <a href="mailto:moussamagassa2001@gmail.com" class="coord-item">
-              <span class="coord-ico">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/></svg>
-              </span>
-              <span><small>E-mail</small><br />moussamagassa2001@gmail.com</span>
-            </a>
-            <div class="coord-item">
-              <span class="coord-ico">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s7-5.1 7-11a7 7 0 1 0-14 0c0 5.9 7 11 7 11z"/><circle cx="12" cy="11" r="2.5"/></svg>
-              </span>
-              <span><small>Zone</small><br />Toute l'Île-de-France</span>
-            </div>
-            <div class="coord-item">
-              <span class="coord-ico">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>
-              </span>
-              <span><small>Disponibilité</small><br />7 jours sur 7</span>
-            </div>
-          </div>
+          <dl class="coords">
+            <div><dt>Téléphone</dt><dd><a href="tel:0622179711">06 22 17 97 11</a></dd></div>
+            <div><dt>E-mail</dt><dd><a href="mailto:moussamagassa2001@gmail.com">moussamagassa2001@gmail.com</a></dd></div>
+            <div><dt>Zone</dt><dd>Toute l'Île-de-France</dd></div>
+            <div><dt>Disponibilité</dt><dd>7 jours sur 7</dd></div>
+          </dl>
         </div>
 
-        <form class="form reveal" id="contactForm">
-          <div class="form-2col">
-            <label class="champ">
+        <form class="form" id="contactForm" novalidate>
+          <div class="row">
+            <label class="field">
               <span>Nom / Société *</span>
-              <input type="text" id="nom" placeholder="Jean Dupont" required />
+              <input type="text" id="nom" autocomplete="name" required />
             </label>
-            <label class="champ">
+            <label class="field">
               <span>Téléphone *</span>
-              <input type="tel" id="tel" placeholder="06 XX XX XX XX" required />
+              <input type="tel" id="tel" autocomplete="tel" required />
             </label>
           </div>
-          <label class="champ">
+          <label class="field">
             <span>E-mail</span>
-            <input type="email" id="email" placeholder="vous@exemple.fr" />
+            <input type="email" id="email" autocomplete="email" />
           </label>
-          <label class="champ">
+          <label class="field">
             <span>Service souhaité *</span>
             <select id="service" required>
-              <option value="" disabled selected>Choisissez…</option>
+              <option value="" selected disabled>Choisissez un service</option>
               <option>Nettoyage de bureaux et de maisons</option>
               <option>Lavage de vitres</option>
               <option>Nettoyage après travaux</option>
@@ -349,12 +323,13 @@
               <option>Autre demande</option>
             </select>
           </label>
-          <label class="champ">
+          <label class="field">
             <span>Votre demande *</span>
-            <textarea id="message" rows="4" placeholder="Type de local, surface, ville, fréquence souhaitée…" required></textarea>
+            <textarea id="message" rows="5" placeholder="Type de local, surface, ville, fréquence…" required></textarea>
           </label>
-          <button type="submit" class="btn btn-amber btn-envoi"><span>Envoyer ma demande ✦</span></button>
-          <p class="form-note">Devis gratuit, réponse sous 24h. Promis, pas de spam.</p>
+          <p class="form-err" id="formErr" role="alert"></p>
+          <button type="submit" class="btn btn-accent btn-full">Envoyer ma demande</button>
+          <p class="form-note">Le bouton ouvre votre messagerie avec la demande pré-remplie.</p>
         </form>
       </div>
     </section>
@@ -362,60 +337,50 @@
 
   <!-- ═══════════ PIED DE PAGE ═══════════ -->
   <footer class="footer">
-    <div class="wrap">
-      <p class="footer-word">MMG <em>Nettoyage</em></p>
-      <div class="footer-cols">
-        <p class="footer-slogan">Votre propreté,<br />notre priorité !</p>
-        <ul>
-          <li><a href="#services">Nos services</a></li>
-          <li><a href="#methode">Notre méthode</a></li>
-          <li><a href="#zone">Zone d'intervention</a></li>
-          <li><a href="#contact">Contact</a></li>
-        </ul>
-        <ul>
-          <li><a href="tel:0622179711">06 22 17 97 11</a></li>
-          <li><a href="mailto:moussamagassa2001@gmail.com">moussamagassa2001@gmail.com</a></li>
-          <li>Île-de-France</li>
-        </ul>
+    <div class="wrap footer-in">
+      <div>
+        <p class="footer-brand">MMG Nettoyage</p>
+        <p class="footer-muted">Votre propreté, notre priorité.</p>
       </div>
-      <p class="footer-bas">© 2026 MMG Nettoyage — Travail soigné · Respect des délais · Devis gratuit</p>
+      <ul>
+        <li><a href="#services">Services</a></li>
+        <li><a href="#methode">Méthode</a></li>
+        <li><a href="#zone">Zone d'intervention</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+      <ul>
+        <li><a href="tel:0622179711">06 22 17 97 11</a></li>
+        <li><a href="mailto:moussamagassa2001@gmail.com">moussamagassa2001@gmail.com</a></li>
+        <li>Île-de-France</li>
+      </ul>
     </div>
+    <div class="wrap footer-bottom">© 2026 MMG Nettoyage</div>
   </footer>
 
-  <aside class="themes" id="themes" aria-label="Choisir un thème">
-    <button class="themes-toggle" type="button" id="themesToggle" aria-expanded="true">
-      Apparence
-    </button>
-    <div class="themes-panel" id="themesPanel">
-      <p>Essayer nos thèmes.</p>
-      <div class="themes-btns">
-        <button type="button" class="theme-btn" data-theme="foret" aria-pressed="true">
-          <span class="theme-swatch" style="--s1:#2c6e49;--s2:#e9a13b;--s3:#faf5ec"></span>
-          Forêt
-        </button>
-        <button type="button" class="theme-btn" data-theme="ocean" aria-pressed="false">
-          <span class="theme-swatch" style="--s1:#1d4e89;--s2:#e07a5f;--s3:#f3f7fb"></span>
-          Océan
-        </button>
-        <button type="button" class="theme-btn" data-theme="minuit" aria-pressed="false">
-          <span class="theme-swatch" style="--s1:#14110e;--s2:#e8c56a;--s3:#f6edd8"></span>
-          Minuit
-        </button>
-        <button type="button" class="theme-btn" data-theme="lavande" aria-pressed="false">
-          <span class="theme-swatch" style="--s1:#5c3d6e;--s2:#d4a0b3;--s3:#fbf6f8"></span>
-          Lavande
-        </button>
-        <button type="button" class="theme-btn" data-theme="citrus" aria-pressed="false">
-          <span class="theme-swatch" style="--s1:#0f766e;--s2:#f4c430;--s3:#fffdf6"></span>
-          Citrus
-        </button>
+  <!-- ═══════════ SÉLECTEUR DE THÈMES ═══════════ -->
+  <div class="themes" id="themes">
+    <div class="themes-panel" id="themesPanel" hidden>
+      <p class="themes-title">Choisir un thème</p>
+      <div class="themes-list">
+        <button type="button" data-theme="mmg"><span class="sw" style="--a:#0b4d2c;--b:#e0a92b;--c:#ffffff"></span><span class="tn" style="font-family:Montserrat,sans-serif;font-weight:800">MMG</span><small>Couleurs du logo</small></button>
+        <button type="button" data-theme="atelier"><span class="sw" style="--a:#2f4a3a;--b:#c08a2c;--c:#f3efe6"></span><span class="tn" style="font-family:Archivo,sans-serif;font-weight:800">Atelier</span><small>Sobre, papier</small></button>
+        <button type="button" data-theme="terracotta"><span class="sw" style="--a:#b4532a;--b:#2b1e16;--c:#f2e9de"></span><span class="tn" style="font-family:'DM Serif Display',serif">Terracotta</span><small>Chaleureux</small></button>
+        <button type="button" data-theme="pro"><span class="sw" style="--a:#1f5fbf;--b:#ffb400;--c:#ffffff"></span><span class="tn" style="font-family:'Barlow Condensed',sans-serif;font-weight:700;text-transform:uppercase">Bleu pro</span><small>Entreprise</small></button>
+        <button type="button" data-theme="nuit"><span class="sw" style="--a:#111111;--b:#f2c200;--c:#f1efe8"></span><span class="tn" style="font-family:Anton,sans-serif;text-transform:uppercase">Nuit</span><small>Sombre, jaune</small></button>
+        <button type="button" data-theme="menthe"><span class="sw" style="--a:#0d7a6f;--b:#ff8a5b;--c:#f6fbf9"></span><span class="tn" style="font-family:Lexend,sans-serif;font-weight:600">Menthe</span><small>Frais, arrondi</small></button>
       </div>
     </div>
-  </aside>
+    <button class="themes-btn" id="themesBtn" type="button" aria-expanded="false" aria-controls="themesPanel">
+      <span class="themes-dots" aria-hidden="true"><i></i><i></i><i></i></span>
+      Thèmes
+    </button>
+  </div>
 
-  <a href="tel:0622179711" class="fab" aria-label="Appeler MMG Nettoyage">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-  </a>
+  <!-- barre d'action mobile -->
+  <div class="mobile-bar">
+    <a href="tel:0622179711">Appeler</a>
+    <a href="#contact" class="mobile-bar-devis">Devis gratuit</a>
+  </div>
 
   <script src="script.js"></script>
 </body>

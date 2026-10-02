@@ -2,184 +2,106 @@
 // MMG Nettoyage — interactions
 // ═══════════════════════════════════════════════════
 
-// ── Sélecteur de thèmes ──────────────────────────
-const themes = document.getElementById("themes");
-const themesToggle = document.getElementById("themesToggle");
-const themeBtns = document.querySelectorAll(".theme-btn");
+// ── Thèmes ───────────────────────────────────────
+const fontsLink = document.getElementById("themeFonts");
+const themesBtn = document.getElementById("themesBtn");
+const themesPanel = document.getElementById("themesPanel");
+const themeBtns = document.querySelectorAll(".themes-list button");
+const fontUrl = (q) => `https://fonts.googleapis.com/css2?${q}&display=swap`;
 
-const appliquerTheme = (nom) => {
-  document.documentElement.dataset.theme = nom;
-  localStorage.setItem("mmg-theme", nom);
-  themeBtns.forEach((btn) => {
-    btn.setAttribute("aria-pressed", btn.dataset.theme === nom);
-  });
+const applyTheme = (name) => {
+  document.documentElement.dataset.theme = name;
+  fontsLink.href = fontUrl(window.MMG_FONTS[name]);
+  themeBtns.forEach((b) => b.setAttribute("aria-pressed", String(b.dataset.theme === name)));
+  try { localStorage.setItem("mmg-theme-v3", name); } catch (e) {}
 };
 
-appliquerTheme(document.documentElement.dataset.theme || "foret");
+themeBtns.forEach((b) => b.addEventListener("click", () => applyTheme(b.dataset.theme)));
+themeBtns.forEach((b) => b.setAttribute("aria-pressed", String(b.dataset.theme === document.documentElement.dataset.theme)));
 
-themeBtns.forEach((btn) => {
-  btn.addEventListener("click", () => appliquerTheme(btn.dataset.theme));
-});
-
-themesToggle.addEventListener("click", () => {
-  const replie = themes.classList.toggle("replié");
-  themesToggle.setAttribute("aria-expanded", String(!replie));
+// charge toutes les polices à la première ouverture, pour l'aperçu des noms
+let previewLoaded = false;
+const setPanel = (open) => {
+  themesPanel.hidden = !open;
+  themesBtn.setAttribute("aria-expanded", String(open));
+  if (open && !previewLoaded) {
+    previewLoaded = true;
+    const all = document.createElement("link");
+    all.rel = "stylesheet";
+    all.href = fontUrl(Object.values(window.MMG_FONTS).join("&"));
+    document.head.appendChild(all);
+  }
+};
+themesBtn.addEventListener("click", () => setPanel(themesPanel.hidden));
+document.addEventListener("click", (e) => {
+  if (!document.getElementById("themes").contains(e.target)) setPanel(false);
 });
 
 // ── Menu mobile ──────────────────────────────────
 const burger = document.getElementById("burger");
-const navMenu = document.getElementById("navMenu");
+const menu = document.getElementById("menu");
 
-burger.addEventListener("click", () => {
-  const ouvert = navMenu.classList.toggle("ouvert");
-  burger.setAttribute("aria-expanded", ouvert);
+const setMenu = (open) => {
+  menu.classList.toggle("open", open);
+  burger.setAttribute("aria-expanded", String(open));
+  burger.setAttribute("aria-label", open ? "Fermer le menu" : "Ouvrir le menu");
+};
+burger.addEventListener("click", () => setMenu(!menu.classList.contains("open")));
+menu.querySelectorAll("a").forEach((a) => a.addEventListener("click", () => setMenu(false)));
+document.addEventListener("keydown", (e) => {
+  if (e.key === "Escape") { setMenu(false); setPanel(false); }
 });
 
-navMenu.querySelectorAll("a").forEach((lien) =>
-  lien.addEventListener("click", () => {
-    navMenu.classList.remove("ouvert");
-    burger.setAttribute("aria-expanded", "false");
-  })
+// ── Lien actif dans le menu ──────────────────────
+const links = [...menu.querySelectorAll('a[href^="#"]:not(.menu-devis)')];
+const obs = new IntersectionObserver(
+  (entries) => entries.forEach((en) => {
+    if (en.isIntersecting) links.forEach((l) => l.classList.toggle("active", l.getAttribute("href") === `#${en.target.id}`));
+  }),
+  { rootMargin: "-45% 0px -50% 0px" }
 );
+document.querySelectorAll("main > section").forEach((s) => obs.observe(s));
 
-// ── Ombre de la barre de navigation au scroll ────
-const nav = document.getElementById("nav");
-window.addEventListener("scroll", () => {
-  nav.classList.toggle("ombre", window.scrollY > 10);
-}, { passive: true });
-
-// ── Apparitions au défilement (avec décalage) ────
-const observateur = new IntersectionObserver(
-  (entrees) => {
-    entrees.forEach((entree) => {
-      if (entree.isIntersecting) {
-        entree.target.classList.add("visible");
-        observateur.unobserve(entree.target);
-      }
-    });
-  },
-  { threshold: 0.12, rootMargin: "0px 0px -40px 0px" }
+// ── Service → présélection dans le formulaire ────
+const select = document.getElementById("service");
+document.querySelectorAll("[data-service]").forEach((a) =>
+  a.addEventListener("click", () => { select.value = a.dataset.service; })
 );
-
-document.querySelectorAll(".reveal").forEach((el, i) => {
-  // léger décalage en cascade pour les éléments proches
-  el.style.setProperty("--d", `${(i % 4) * 0.08}s`);
-  observateur.observe(el);
-});
-
-// ── Parallaxe douce sur le visuel du héro ────────
-const art = document.querySelector(".hero-art");
-const arch = document.querySelector(".arch");
-const tag = document.querySelector(".tag");
-
-if (window.matchMedia("(pointer: fine)").matches && art) {
-  document.querySelector(".hero").addEventListener("mousemove", (e) => {
-    const r = art.getBoundingClientRect();
-    const dx = (e.clientX - (r.left + r.width / 2)) / r.width;
-    const dy = (e.clientY - (r.top + r.height / 2)) / r.height;
-    arch.style.transform = `translate(${dx * 10}px, ${dy * 8}px)`;
-    tag.style.translate = `${dx * -14}px ${dy * -10}px`;
-  });
-}
-
-// ── Services : menu interactif + panneau ─────────
-const services = [
-  {
-    titre: "Nettoyage de bureaux & de maisons",
-    desc: "Entretien régulier ou ponctuel de vos locaux professionnels et de votre domicile. Nous nous adaptons à vos horaires pour ne jamais gêner votre activité.",
-    tags: ["Sols & surfaces", "Sanitaires", "Dépoussiérage", "Entretien régulier"],
-    img: "https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=900&q=70",
-  },
-  {
-    titre: "Lavage de vitres",
-    desc: "Vitres, baies vitrées et vitrines impeccables, sans aucune trace. Laissez entrer la lumière, on s'occupe du reste — encadrements et rebords compris.",
-    tags: ["Vitres & baies vitrées", "Vitrines", "Sans traces", "Encadrements"],
-    img: "https://images.unsplash.com/photo-1524758631624-e2822e304c36?auto=format&fit=crop&w=900&q=70",
-  },
-  {
-    titre: "Nettoyage après travaux",
-    desc: "Poussières fines, résidus de plâtre, traces de peinture : nous effaçons toute trace du chantier pour ne laisser place qu'au résultat.",
-    tags: ["Poussières fines", "Résidus de plâtre", "Traces de peinture", "Finitions"],
-    img: "https://images.unsplash.com/photo-1504148455328-c376907d081c?auto=format&fit=crop&w=900&q=70",
-  },
-  {
-    titre: "Nettoyage de fin de chantier",
-    desc: "Remise en état complète avant livraison : un espace propre, net et accueillant, prêt à être occupé dès le premier jour.",
-    tags: ["Remise en état", "Avant livraison", "Contrôle final", "Prêt à occuper"],
-    img: "https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=900&q=70",
-  },
-  {
-    titre: "Désinfection & remise en état",
-    desc: "Désinfection en profondeur des surfaces de contact et remise à neuf de vos locaux, pour un environnement sain et sécurisé.",
-    tags: ["Surfaces de contact", "Produits professionnels", "Remise à neuf", "Espaces sains"],
-    img: "https://images.unsplash.com/photo-1584622650111-993a426fbf0a?auto=format&fit=crop&w=900&q=70",
-  },
-];
-
-// préchargement des images pour des transitions fluides
-services.forEach((s) => { const im = new Image(); im.src = s.img; });
-
-const items = document.querySelectorAll(".srv-item");
-const panneau = document.getElementById("srvPanel");
-const pImg = document.getElementById("srvImg");
-const pTitre = document.getElementById("srvTitre");
-const pDesc = document.getElementById("srvDesc");
-const pTags = document.getElementById("srvTags");
-
-let fonduTimer = null;
-
-function remplirPanneau(i) {
-  const s = services[i];
-  pImg.src = s.img;
-  pImg.alt = s.titre;
-  pTitre.textContent = s.titre;
-  pDesc.textContent = s.desc;
-  pTags.innerHTML = s.tags.map((t) => `<li>${t}</li>`).join("");
-}
-
-function activerService(i, avecScroll = false) {
-  items.forEach((b, j) => b.classList.toggle("actif", i === j));
-  clearTimeout(fonduTimer);
-  panneau.classList.add("fondu");
-  fonduTimer = setTimeout(() => {
-    remplirPanneau(i);
-    panneau.classList.remove("fondu");
-    if (avecScroll && window.innerWidth <= 980) {
-      panneau.scrollIntoView({ behavior: "smooth", block: "nearest" });
-    }
-  }, 220);
-}
-
-items.forEach((bouton, i) => {
-  bouton.addEventListener("click", () => activerService(i, true));
-  bouton.addEventListener("mouseenter", () => {
-    if (window.matchMedia("(pointer: fine)").matches) activerService(i);
-  });
-});
-
-// contenu initial, sans fondu
-remplirPanneau(0);
 
 // ── Formulaire : ouvre un e-mail pré-rempli ──────
-document.getElementById("contactForm").addEventListener("submit", (e) => {
+const form = document.getElementById("contactForm");
+const formErr = document.getElementById("formErr");
+
+form.addEventListener("submit", (e) => {
   e.preventDefault();
-
-  const nom = document.getElementById("nom").value.trim();
-  const tel = document.getElementById("tel").value.trim();
+  const nom = document.getElementById("nom");
+  const tel = document.getElementById("tel");
+  const message = document.getElementById("message");
   const email = document.getElementById("email").value.trim();
-  const service = document.getElementById("service").value;
-  const message = document.getElementById("message").value.trim();
 
-  const sujet = encodeURIComponent(`Demande de devis — ${service}`);
+  const required = [nom, tel, select, message];
+  const missing = required.filter((f) => !f.value.trim());
+  required.forEach((f) => f.classList.toggle("invalid", missing.includes(f)));
+  if (missing.length) {
+    formErr.textContent = "Merci de remplir les champs obligatoires (*).";
+    missing[0].focus();
+    return;
+  }
+  formErr.textContent = "";
+
+  const sujet = encodeURIComponent(`Demande de devis — ${select.value}`);
   const corps = encodeURIComponent(
     `Bonjour,\n\nJe souhaite obtenir un devis gratuit.\n\n` +
-      `Nom / Société : ${nom}\n` +
-      `Téléphone : ${tel}\n` +
+      `Nom / Société : ${nom.value.trim()}\n` +
+      `Téléphone : ${tel.value.trim()}\n` +
       (email ? `E-mail : ${email}\n` : "") +
-      `Service souhaité : ${service}\n\n` +
-      `Ma demande :\n${message}\n\n` +
-      `Cordialement,\n${nom}`
+      `Service souhaité : ${select.value}\n\n` +
+      `Ma demande :\n${message.value.trim()}\n\n` +
+      `Cordialement,\n${nom.value.trim()}`
   );
-
   window.location.href = `mailto:moussamagassa2001@gmail.com?subject=${sujet}&body=${corps}`;
 });
+
+form.querySelectorAll("input, select, textarea").forEach((f) =>
+  f.addEventListener("input", () => f.classList.remove("invalid"))
+);
