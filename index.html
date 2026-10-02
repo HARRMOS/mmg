@@ -31,6 +31,16 @@
 </head>
 <body>
 
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <symbol id="i-spark" viewBox="0 0 24 24"><path d="M12 0c.6 5.6 3.4 8.6 9 9.6v.8c-5.6 1-8.4 4-9 9.6h-.1c-.6-5.6-3.4-8.6-9-9.6v-.8c5.6-1 8.4-4 9-9.6z" fill="currentColor"/></symbol>
+    <symbol id="i-phone" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-check" viewBox="0 0 24 24"><path d="m5 12.5 4.5 4.5L19 7.5" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-arrow-ne" viewBox="0 0 24 24"><path d="M7 17 17 7M8 7h9v9" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+    <symbol id="i-hammer" viewBox="0 0 48 48"><g fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M27 15 10 32a3.5 3.5 0 0 0 5 5l17-17"/><path d="m24 12 6-6 12 12-6 6-3-3-3 3-6-6 3-3z"/></g></symbol>
+    <symbol id="i-key" viewBox="0 0 48 48"><g fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M8 40V20L24 8l16 12v20z"/><path d="M19 40V28h10v12"/></g></symbol>
+    <symbol id="i-shield" viewBox="0 0 48 48"><g fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M24 5 9 11v11c0 10 6.4 17.7 15 21 8.6-3.3 15-11 15-21V11z"/><path d="M24 17v14M17 24h14"/></g></symbol>
+  </svg>
+
   <!-- ═══════════ BANDEAU HAUT ═══════════ -->
   <div class="topbar">
     <div class="wrap topbar-in">
@@ -57,7 +67,7 @@
 
       <nav class="menu" id="menu" aria-label="Navigation principale">
         <a href="#services">Services</a>
-        <a href="#engagements">Engagements</a>
+        <a href="#resultat">Résultat</a>
         <a href="#methode">Méthode</a>
         <a href="#zone">Zone</a>
         <a href="#faq">FAQ</a>
@@ -77,29 +87,46 @@
     <section class="hero">
       <div class="wrap hero-in">
         <div class="hero-txt">
-          <p class="overline">Bureaux · Maisons · Vitres · Chantiers</p>
-          <h1>Entreprise de nettoyage en <span class="nowrap">Île-de-France</span></h1>
-          <p class="hero-p">
+          <p class="overline reveal">Bureaux · Maisons · Vitres · Chantiers</p>
+          <h1 class="reveal">Entreprise de nettoyage en <span class="nowrap hl">Île-de-France</span></h1>
+          <p class="hero-p reveal">
             MMG Nettoyage intervient chez les particuliers et les professionnels
             dans toute l'Île-de-France. Entretien régulier, lavage de vitres,
             nettoyage après travaux ou fin de chantier : on s'occupe de tout,
             avec soin et dans les délais.
           </p>
-          <div class="hero-cta">
+          <div class="hero-cta reveal">
             <a href="#contact" class="btn btn-accent">Demander un devis gratuit</a>
             <a href="tel:0622179711" class="btn btn-line">
-              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+              <svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-phone"/></svg>
               06 22 17 97 11
             </a>
           </div>
+          <ul class="hero-checks reveal">
+            <li><svg aria-hidden="true"><use href="#i-check"/></svg>Travail soigné</li>
+            <li><svg aria-hidden="true"><use href="#i-check"/></svg>Respect des délais</li>
+            <li><svg aria-hidden="true"><use href="#i-check"/></svg>Devis gratuit</li>
+          </ul>
         </div>
-        <figure class="hero-img">
-          <img src="https://images.unsplash.com/photo-1581578731548-c64695cc6952?auto=format&fit=crop&w=1000&q=75" alt="Agent d'entretien nettoyant une fenêtre" />
-        </figure>
+        <div class="hero-art reveal">
+          <div class="hero-block" aria-hidden="true"></div>
+          <figure class="hero-img">
+            <img src="https://images.unsplash.com/photo-1581578731548-c64695cc6952?auto=format&fit=crop&w=1000&q=75" alt="Agent d'entretien nettoyant une fenêtre" />
+          </figure>
+          <div class="stamp" aria-hidden="true">
+            <svg viewBox="0 0 120 120">
+              <defs><path id="cercle" d="M 60,60 m -44,0 a 44,44 0 1,1 88,0 a 44,44 0 1,1 -88,0" /></defs>
+              <text><textPath href="#cercle">DEVIS GRATUIT • ÎLE-DE-FRANCE •</textPath></text>
+            </svg>
+            <svg class="stamp-spark"><use href="#i-spark"/></svg>
+          </div>
+          <svg class="spark sp1" aria-hidden="true"><use href="#i-spark"/></svg>
+          <svg class="spark sp2" aria-hidden="true"><use href="#i-spark"/></svg>
+        </div>
       </div>
 
       <div class="wrap">
-        <ul class="facts">
+        <ul class="facts reveal">
           <li><strong>Devis gratuit</strong><span>Réponse sous 24h, sans engagement</span></li>
           <li><strong>7 jours sur 7</strong><span>Interventions selon vos horaires</span></li>
           <li><strong>Île-de-France</strong><span>Les 8 départements couverts</span></li>
@@ -108,154 +135,302 @@
       </div>
     </section>
 
+    <!-- ═══════════ BANDEAU DÉFILANT ═══════════ -->
+    <div class="ticker" aria-hidden="true">
+      <div class="ticker-track">
+        <span>Bureaux</span><svg><use href="#i-spark"/></svg>
+        <span>Maisons</span><svg><use href="#i-spark"/></svg>
+        <span>Vitres</span><svg><use href="#i-spark"/></svg>
+        <span>Après travaux</span><svg><use href="#i-spark"/></svg>
+        <span>Fin de chantier</span><svg><use href="#i-spark"/></svg>
+        <span>Désinfection</span><svg><use href="#i-spark"/></svg>
+        <span>Bureaux</span><svg><use href="#i-spark"/></svg>
+        <span>Maisons</span><svg><use href="#i-spark"/></svg>
+        <span>Vitres</span><svg><use href="#i-spark"/></svg>
+        <span>Après travaux</span><svg><use href="#i-spark"/></svg>
+        <span>Fin de chantier</span><svg><use href="#i-spark"/></svg>
+        <span>Désinfection</span><svg><use href="#i-spark"/></svg>
+      </div>
+    </div>
+
     <!-- ═══════════ SERVICES ═══════════ -->
-    <section class="section" id="services">
+    <section class="section services-sec" id="services">
       <div class="wrap">
-        <div class="head">
+        <div class="head reveal">
           <p class="overline">01 — Nos services</p>
-          <h2>Ce que nous nettoyons</h2>
-          <p class="head-p">Cinq prestations, pour les particuliers comme pour les entreprises. Chaque devis est adapté à votre lieu et à votre besoin.</p>
+          <h2>Une prestation pour <span class="hl">chaque espace</span></h2>
+          <p class="head-p">Particuliers ou professionnels, ponctuel ou régulier : on s'adapte à votre lieu, à vos horaires et à votre budget.</p>
         </div>
 
-        <div class="services">
-          <article class="service">
-            <div class="service-img"><img src="https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=800&q=70" alt="Bureaux lumineux" loading="lazy" /></div>
-            <div class="service-body">
+        <div class="bento">
+          <article class="card card-photo card-xl reveal">
+            <img src="https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=1100&q=70" alt="Bureaux lumineux et propres" loading="lazy" />
+            <div class="card-body">
+              <span class="card-num">01</span>
               <h3>Bureaux &amp; maisons</h3>
-              <p>Entretien régulier ou ponctuel de vos locaux et de votre domicile : sols, surfaces, sanitaires, dépoussiérage.</p>
-              <a href="#contact" class="more" data-service="Nettoyage de bureaux et de maisons">Demander un devis →</a>
+              <p>Entretien régulier ou ponctuel de vos locaux professionnels et de votre domicile, en s'adaptant à vos horaires pour ne jamais gêner votre activité.</p>
+              <ul class="tags"><li>Sols &amp; surfaces</li><li>Sanitaires</li><li>Dépoussiérage</li><li>Entretien régulier</li></ul>
+              <a href="#contact" class="card-link" data-service="Nettoyage de bureaux et de maisons">Demander un devis <svg><use href="#i-arrow-ne"/></svg></a>
             </div>
           </article>
-          <article class="service">
-            <div class="service-img"><img src="https://images.unsplash.com/photo-1524758631624-e2822e304c36?auto=format&fit=crop&w=800&q=70" alt="Grandes baies vitrées" loading="lazy" /></div>
-            <div class="service-body">
+
+          <article class="card card-photo reveal">
+            <img src="https://images.unsplash.com/photo-1524758631624-e2822e304c36?auto=format&fit=crop&w=800&q=70" alt="Grandes baies vitrées lumineuses" loading="lazy" />
+            <div class="card-body">
+              <span class="card-num">02</span>
               <h3>Lavage de vitres</h3>
-              <p>Vitres, baies vitrées et vitrines sans traces. Encadrements et rebords compris.</p>
-              <a href="#contact" class="more" data-service="Lavage de vitres">Demander un devis →</a>
+              <p>Vitres, baies vitrées et vitrines sans traces — encadrements et rebords compris.</p>
+              <a href="#contact" class="card-link" data-service="Lavage de vitres">Demander un devis <svg><use href="#i-arrow-ne"/></svg></a>
             </div>
           </article>
-          <article class="service">
-            <div class="service-img"><img src="https://images.unsplash.com/photo-1504148455328-c376907d081c?auto=format&fit=crop&w=800&q=70" alt="Outils de chantier" loading="lazy" /></div>
-            <div class="service-body">
-              <h3>Nettoyage après travaux</h3>
-              <p>Poussières fines, résidus de plâtre, traces de peinture : on efface le chantier, il ne reste que le résultat.</p>
-              <a href="#contact" class="more" data-service="Nettoyage après travaux">Demander un devis →</a>
-            </div>
+
+          <article class="card card-plain reveal">
+            <span class="card-ico"><svg><use href="#i-hammer"/></svg></span>
+            <span class="card-num">03</span>
+            <h3>Nettoyage après travaux</h3>
+            <p>Poussières fines, résidus de plâtre, traces de peinture : on efface le chantier pour ne laisser que le résultat.</p>
+            <a href="#contact" class="card-link" data-service="Nettoyage après travaux">Demander un devis <svg><use href="#i-arrow-ne"/></svg></a>
           </article>
-          <article class="service">
-            <div class="service-img"><img src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=800&q=70" alt="Bâtiment en fin de construction" loading="lazy" /></div>
-            <div class="service-body">
-              <h3>Fin de chantier</h3>
-              <p>Remise en état complète avant livraison, pour un lieu prêt à être occupé dès le premier jour.</p>
-              <a href="#contact" class="more" data-service="Nettoyage de fin de chantier">Demander un devis →</a>
-            </div>
+
+          <article class="card card-accent reveal">
+            <span class="card-ico"><svg><use href="#i-key"/></svg></span>
+            <span class="card-num">04</span>
+            <h3>Fin de chantier</h3>
+            <p>Remise en état complète avant livraison : un espace net, prêt à être occupé dès le premier jour.</p>
+            <a href="#contact" class="card-link" data-service="Nettoyage de fin de chantier">Demander un devis <svg><use href="#i-arrow-ne"/></svg></a>
           </article>
-          <article class="service">
-            <div class="service-img"><img src="https://images.unsplash.com/photo-1584622650111-993a426fbf0a?auto=format&fit=crop&w=800&q=70" alt="Désinfection d'une surface" loading="lazy" /></div>
-            <div class="service-body">
-              <h3>Désinfection &amp; remise en état</h3>
-              <p>Désinfection des surfaces de contact et remise à neuf, pour un environnement sain.</p>
-              <a href="#contact" class="more" data-service="Désinfection et remise en état">Demander un devis →</a>
-            </div>
+
+          <article class="card card-hl reveal">
+            <span class="card-ico"><svg><use href="#i-shield"/></svg></span>
+            <span class="card-num">05</span>
+            <h3>Désinfection &amp; remise en état</h3>
+            <p>Désinfection en profondeur des surfaces de contact pour un environnement sain et sécurisé.</p>
+            <a href="#contact" class="card-link" data-service="Désinfection et remise en état">Demander un devis <svg><use href="#i-arrow-ne"/></svg></a>
           </article>
-          <aside class="service service-call">
-            <h3>Un besoin particulier ?</h3>
-            <p>Appelez-nous, on étudie chaque demande et on vous propose une solution adaptée.</p>
-            <a href="tel:0622179711" class="service-call-tel">06 22 17 97 11</a>
-          </aside>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════ AVANT / APRÈS ═══════════ -->
+    <section class="section resultat" id="resultat">
+      <div class="wrap resultat-in">
+        <div class="resultat-txt reveal">
+          <p class="overline">02 — Le résultat</p>
+          <h2>La différence se <span class="hl">voit</span>.</h2>
+          <p>Faites glisser le curseur pour comparer. Chaque intervention se termine par un contrôle final : on ne repart que lorsque tout est impeccable.</p>
+          <ul class="checklist">
+            <li><svg><use href="#i-check"/></svg>Produits et matériel professionnels</li>
+            <li><svg><use href="#i-check"/></svg>Attention portée aux moindres détails</li>
+            <li><svg><use href="#i-check"/></svg>Contrôle final avant de partir</li>
+          </ul>
+        </div>
+
+        <div class="ba reveal" id="ba" style="--pos:50%">
+          <img class="ba-img" src="https://images.unsplash.com/photo-1497366811353-6870744d04b2?auto=format&fit=crop&w=1100&q=70" alt="Espace de bureau propre après nettoyage" loading="lazy" />
+          <div class="ba-before" aria-hidden="true">
+            <img class="ba-img" src="https://images.unsplash.com/photo-1497366811353-6870744d04b2?auto=format&fit=crop&w=1100&q=70" alt="" loading="lazy" />
+            <div class="ba-dirt"></div>
+          </div>
+          <span class="ba-label ba-label-l">Avant</span>
+          <span class="ba-label ba-label-r">Après</span>
+          <div class="ba-handle" aria-hidden="true"><span><svg viewBox="0 0 24 24"><path d="m9 6-6 6 6 6M15 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span></div>
+          <input class="ba-range" type="range" min="0" max="100" value="50" aria-label="Comparer avant et après" />
+          <small class="ba-note">Illustration</small>
         </div>
       </div>
     </section>
 
     <!-- ═══════════ ENGAGEMENTS ═══════════ -->
-    <section class="section band" id="engagements">
+    <section class="section" id="engagements">
       <div class="wrap">
-        <div class="head">
-          <p class="overline">02 — Nos engagements</p>
-          <h2>Trois promesses, tenues à chaque intervention</h2>
+        <div class="head reveal">
+          <p class="overline">03 — Nos engagements</p>
+          <h2>Trois promesses, <span class="hl">tenues</span> à chaque intervention</h2>
         </div>
         <div class="promises">
-          <div class="promise">
+          <div class="promise reveal">
             <span class="promise-n">1</span>
             <h3>Travail soigné</h3>
             <p>Chaque recoin compte. On travaille avec méthode et des produits professionnels, et on contrôle avant de partir.</p>
           </div>
-          <div class="promise">
+          <div class="promise reveal">
             <span class="promise-n">2</span>
             <h3>Respect des délais</h3>
             <p>On arrive à la date et à l'heure convenues. Votre planning reste le vôtre.</p>
           </div>
-          <div class="promise">
+          <div class="promise reveal">
             <span class="promise-n">3</span>
             <h3>Devis gratuit</h3>
             <p>Une estimation claire et détaillée sous 24h, sans engagement. Pas de surprise sur la facture.</p>
           </div>
         </div>
-        <blockquote class="quote">
-          <p>« Votre propreté, notre priorité ! »</p>
-          <cite>Moussa, fondateur de MMG Nettoyage</cite>
-        </blockquote>
       </div>
     </section>
 
     <!-- ═══════════ MÉTHODE ═══════════ -->
-    <section class="section" id="methode">
+    <section class="section methode" id="methode">
       <div class="wrap">
-        <div class="head">
-          <p class="overline">03 — Comment ça marche</p>
-          <h2>Trois étapes, c'est tout</h2>
+        <div class="methode-head reveal">
+          <div>
+            <p class="overline">04 — Comment ça marche</p>
+            <h2>Simple comme <span class="hl">un, deux, trois</span></h2>
+          </div>
+          <p class="methode-intro">
+            Pas de paperasse, pas d'attente. Trois étapes suffisent pour
+            retrouver des espaces impeccables — et vous n'avez rien à faire,
+            ou presque.
+          </p>
         </div>
-        <ol class="steps">
-          <li>
-            <span class="step-n">Étape 1</span>
-            <h3>Vous nous contactez</h3>
-            <p>Par téléphone, e-mail ou formulaire. Dites-nous le type de lieu, la surface et la fréquence souhaitée.</p>
-          </li>
-          <li>
-            <span class="step-n">Étape 2</span>
-            <h3>Vous recevez le devis</h3>
-            <p>Gratuit, détaillé et sans engagement, sous 24h. Vous décidez tranquillement.</p>
-          </li>
-          <li>
-            <span class="step-n">Étape 3</span>
-            <h3>On intervient</h3>
-            <p>À la date prévue. On ne repart que lorsque tout est propre.</p>
-          </li>
-        </ol>
+
+        <div class="steps">
+          <article class="step reveal">
+            <span class="step-filigrane" aria-hidden="true">1</span>
+            <span class="step-badge">Étape 1</span>
+            <!-- téléphone qui sonne -->
+            <div class="step-anim" aria-hidden="true">
+              <svg viewBox="0 0 130 100">
+                <g class="anim-tel">
+                  <path class="trait" vector-effect="non-scaling-stroke" d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z" transform="translate(28,26) scale(2.25)"/>
+                </g>
+                <path class="trait accent onde o1" d="M86 26a16 16 0 0 1 9 13"/>
+                <path class="trait accent onde o2" d="M94 18a26 26 0 0 1 14 21"/>
+                <path class="trait accent onde o3" d="M102 10a36 36 0 0 1 19 29"/>
+              </svg>
+            </div>
+            <h3>Vous nous appelez</h3>
+            <p>Un coup de fil ou un e-mail, et on discute de votre besoin : type de local, surface, fréquence.</p>
+            <a href="tel:0622179711" class="step-link">06 22 17 97 11 →</a>
+          </article>
+
+          <article class="step reveal">
+            <span class="step-filigrane" aria-hidden="true">2</span>
+            <span class="step-badge">Étape 2</span>
+            <!-- devis qui s'écrit puis se valide -->
+            <div class="step-anim" aria-hidden="true">
+              <svg viewBox="0 0 130 100">
+                <rect class="trait doc" x="38" y="8" width="54" height="74" rx="7"/>
+                <line class="trait ligne l1" x1="48" y1="26" x2="82" y2="26"/>
+                <line class="trait ligne l2" x1="48" y1="40" x2="82" y2="40"/>
+                <line class="trait ligne l3" x1="48" y1="54" x2="72" y2="54"/>
+                <g class="coche">
+                  <circle class="coche-fond" cx="88" cy="70" r="14"/>
+                  <path class="coche-trait" d="M81 70l5 5 9-10" fill="none" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                </g>
+              </svg>
+            </div>
+            <h3>Devis gratuit sous 24h</h3>
+            <p>Vous recevez une estimation claire, détaillée et sans engagement. Pas de surprise, jamais.</p>
+            <a href="#contact" class="step-link">Demander mon devis →</a>
+          </article>
+
+          <article class="step reveal">
+            <span class="step-filigrane" aria-hidden="true">3</span>
+            <span class="step-badge">Étape 3</span>
+            <!-- vitre essuyée par une raclette + étincelles -->
+            <div class="step-anim" aria-hidden="true">
+              <svg viewBox="0 0 130 100">
+                <defs>
+                  <clipPath id="vitreClip"><rect x="24" y="14" width="76" height="62" rx="5"/></clipPath>
+                </defs>
+                <rect class="trait doc" x="24" y="14" width="76" height="62" rx="5"/>
+                <g clip-path="url(#vitreClip)">
+                  <rect class="bande" x="-30" y="6" width="22" height="80" transform="skewX(-14)"/>
+                </g>
+                <g class="raclette">
+                  <line x1="30" y1="18" x2="30" y2="72" stroke="currentColor" stroke-width="5" stroke-linecap="round"/>
+                  <line x1="30" y1="45" x2="44" y2="45" stroke="currentColor" stroke-width="4" stroke-linecap="round"/>
+                </g>
+                <path class="etincelle e1" d="M46 34l2.2 6 6 2.2-6 2.2-2.2 6-2.2-6-6-2.2 6-2.2z"/>
+                <path class="etincelle e2" d="M66 52l1.8 5 5 1.8-5 1.8-1.8 5-1.8-5-5-1.8 5-1.8z"/>
+                <path class="etincelle e3" d="M84 30l1.5 4 4 1.5-4 1.5-1.5 4-1.5-4-4-1.5 4-1.5z"/>
+              </svg>
+            </div>
+            <h3>On fait briller</h3>
+            <p>Notre équipe intervient à la date convenue et ne repart que lorsque tout est impeccable.</p>
+            <span class="step-link">Résultat garanti ✦</span>
+          </article>
+        </div>
+
+        <div class="methode-cta reveal">
+          <p>Prêt à faire briller vos locaux ?</p>
+          <div class="methode-cta-r">
+            <a href="tel:0622179711" class="btn btn-hl">Appeler le 06 22 17 97 11</a>
+            <span class="methode-note">Réponse sous 24h — devis gratuit</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══════════ CITATION ═══════════ -->
+    <section class="citation">
+      <div class="wrap reveal">
+        <svg class="citation-spark" aria-hidden="true"><use href="#i-spark"/></svg>
+        <blockquote>« Votre <span class="hl">propreté</span>, notre <span class="hl">priorité</span> ! »</blockquote>
+        <p class="citation-sign">— Moussa, fondateur de MMG Nettoyage</p>
       </div>
     </section>
 
     <!-- ═══════════ ZONE ═══════════ -->
-    <section class="section band-dark" id="zone">
+    <section class="section zone" id="zone">
       <div class="wrap zone-in">
-        <div class="head">
-          <p class="overline">04 — Zone d'intervention</p>
-          <h2>Toute l'Île-de-France</h2>
-          <p class="head-p">De Paris au Val-d'Oise, on se déplace à domicile comme dans vos locaux professionnels.</p>
-          <a href="tel:0622179711" class="btn btn-accent">Appeler le 06 22 17 97 11</a>
+        <div class="zone-txt reveal">
+          <p class="overline">05 — Zone d'intervention</p>
+          <h2>Partout en <span class="hl nowrap">Île-de-France</span></h2>
+          <p class="head-p">De Paris au Val-d'Oise, nous nous déplaçons à votre domicile comme dans vos locaux professionnels, dans les huit départements franciliens.</p>
+
+          <div class="zone-groups">
+            <div class="zg" data-ring="0">
+              <p>Paris</p>
+              <div class="chips"><span class="chip">Paris <b>75</b></span></div>
+            </div>
+            <div class="zg" data-ring="1">
+              <p>Petite couronne</p>
+              <div class="chips">
+                <span class="chip">Hauts-de-Seine <b>92</b></span>
+                <span class="chip">Seine-Saint-Denis <b>93</b></span>
+                <span class="chip">Val-de-Marne <b>94</b></span>
+              </div>
+            </div>
+            <div class="zg" data-ring="2">
+              <p>Grande couronne</p>
+              <div class="chips">
+                <span class="chip">Seine-et-Marne <b>77</b></span>
+                <span class="chip">Yvelines <b>78</b></span>
+                <span class="chip">Essonne <b>91</b></span>
+                <span class="chip">Val-d'Oise <b>95</b></span>
+              </div>
+            </div>
+          </div>
         </div>
-        <ul class="deps">
-          <li><b>75</b>Paris</li>
-          <li><b>77</b>Seine-et-Marne</li>
-          <li><b>78</b>Yvelines</li>
-          <li><b>91</b>Essonne</li>
-          <li><b>92</b>Hauts-de-Seine</li>
-          <li><b>93</b>Seine-Saint-Denis</li>
-          <li><b>94</b>Val-de-Marne</li>
-          <li><b>95</b>Val-d'Oise</li>
-        </ul>
+
+        <div class="radar reveal" id="radar" aria-hidden="true">
+          <svg viewBox="0 0 400 400">
+            <circle class="ring r2" cx="200" cy="200" r="190"/>
+            <circle class="ring r1" cx="200" cy="200" r="122"/>
+            <circle class="ring r0" cx="200" cy="200" r="56"/>
+            <g class="radar-sweep"><path d="M200 200 L200 10 A190 190 0 0 1 334.4 65.6 Z"/></g>
+            <g class="dep d2"><circle cx="200" cy="38" r="5"/><text x="200" y="28">95</text></g>
+            <g class="dep d2"><circle cx="46" cy="214" r="5"/><text x="46" y="200">78</text></g>
+            <g class="dep d2"><circle cx="168" cy="360" r="5"/><text x="168" y="384">91</text></g>
+            <g class="dep d2"><circle cx="356" cy="230" r="5"/><text x="356" y="254">77</text></g>
+            <g class="dep d1"><circle cx="96" cy="190" r="5"/><text x="96" y="176">92</text></g>
+            <g class="dep d1"><circle cx="262" cy="104" r="5"/><text x="262" y="92">93</text></g>
+            <g class="dep d1"><circle cx="266" cy="296" r="5"/><text x="266" y="320">94</text></g>
+            <g class="dep d0 paris"><circle cx="200" cy="200" r="9"/><text x="200" y="230">Paris</text></g>
+          </svg>
+        </div>
       </div>
     </section>
 
     <!-- ═══════════ FAQ ═══════════ -->
     <section class="section" id="faq">
       <div class="wrap faq-in">
-        <div class="head">
-          <p class="overline">05 — Questions fréquentes</p>
+        <div class="head reveal">
+          <p class="overline">06 — Questions fréquentes</p>
           <h2>Vos questions</h2>
           <p class="head-p">Une autre question ? Appelez le <a href="tel:0622179711">06 22 17 97 11</a>.</p>
         </div>
-        <div class="faq">
+        <div class="faq reveal">
           <details open>
             <summary>Le devis est-il gratuit ?</summary>
             <p>Oui, gratuit et sans engagement. Vous le recevez sous 24h avec le détail de la prestation.</p>
@@ -284,7 +459,7 @@
     <section class="section band" id="contact">
       <div class="wrap contact-in">
         <div class="head">
-          <p class="overline">06 — Contact</p>
+          <p class="overline">07 — Contact</p>
           <h2>Demandez votre devis</h2>
           <p class="head-p">Décrivez votre besoin, on vous répond rapidement avec un devis gratuit et sans engagement.</p>
 
@@ -296,7 +471,7 @@
           </dl>
         </div>
 
-        <form class="form" id="contactForm" novalidate>
+        <form class="form reveal" id="contactForm" novalidate>
           <div class="row">
             <label class="field">
               <span>Nom / Société *</span>

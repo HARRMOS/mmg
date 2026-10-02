@@ -105,3 +105,60 @@ form.addEventListener("submit", (e) => {
 form.querySelectorAll("input, select, textarea").forEach((f) =>
   f.addEventListener("input", () => f.classList.remove("invalid"))
 );
+
+// ── Apparitions au défilement ────────────────────
+const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+const revealObs = new IntersectionObserver(
+  (entries) => entries.forEach((en) => {
+    if (en.isIntersecting) {
+      en.target.classList.add("visible");
+      revealObs.unobserve(en.target);
+    }
+  }),
+  { threshold: 0.12, rootMargin: "0px 0px -40px 0px" }
+);
+document.querySelectorAll(".reveal").forEach((el) => {
+  const siblings = [...el.parentElement.children].filter((c) => c.classList.contains("reveal"));
+  el.style.setProperty("--d", `${Math.min(siblings.indexOf(el), 4) * 0.08}s`);
+  revealObs.observe(el);
+});
+
+// ── Avant / Après ────────────────────────────────
+const ba = document.getElementById("ba");
+if (ba) {
+  const range = ba.querySelector(".ba-range");
+  const set = (v) => ba.style.setProperty("--pos", `${v}%`);
+  range.addEventListener("input", () => set(range.value));
+
+  // petite démo automatique à la première apparition
+  if (!reduceMotion) {
+    const demoObs = new IntersectionObserver((entries) => {
+      if (!entries[0].isIntersecting) return;
+      demoObs.disconnect();
+      let touched = false;
+      range.addEventListener("pointerdown", () => { touched = true; }, { once: true });
+      const keys = [50, 22, 78, 50];
+      const t0 = performance.now() + 400;
+      const dur = 2600;
+      const step = (t) => {
+        if (touched) return;
+        const p = Math.max(0, Math.min((t - t0) / dur, 1));
+        const seg = Math.min(Math.floor(p * 3), 2);
+        const ease = 0.5 - Math.cos((p * 3 - seg) * Math.PI) / 2;
+        const v = keys[seg] + (keys[seg + 1] - keys[seg]) * ease;
+        range.value = v;
+        set(v);
+        if (p < 1) requestAnimationFrame(step);
+      };
+      requestAnimationFrame(step);
+    }, { threshold: 0.5 });
+    demoObs.observe(ba);
+  }
+}
+
+// ── Zone : survol des groupes ────────────────────
+const radar = document.getElementById("radar");
+document.querySelectorAll(".zg").forEach((g) => {
+  g.addEventListener("mouseenter", () => { radar.dataset.on = g.dataset.ring; g.classList.add("on"); });
+  g.addEventListener("mouseleave", () => { delete radar.dataset.on; g.classList.remove("on"); });
+});
