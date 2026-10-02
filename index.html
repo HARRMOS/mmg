@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="fr" data-theme="foret">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -10,6 +10,9 @@
   <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,400;1,9..144,500;1,9..144,600&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="styles.css" />
   <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='48' fill='%232c6e49'/><text x='50' y='66' font-size='44' text-anchor='middle' fill='%23fbf7f0' font-family='Georgia' font-weight='bold'>M</text></svg>" />
+  <script>
+    document.documentElement.dataset.theme = localStorage.getItem("mmg-theme") || "foret";
+  </script>
 </head>
 <body>
 
@@ -173,7 +176,7 @@
             <div class="step-anim" aria-hidden="true">
               <svg viewBox="0 0 130 100">
                 <g class="anim-tel">
-                  <path class="trait" d="M22 20c14-8 24 2 20 10l-6 10c-2 4 0 8 4 12s8 6 12 4l10-6c8-4 18 6 10 20" transform="translate(18,12) scale(1.15)" fill="none"/>
+                  <path class="trait" vector-effect="non-scaling-stroke" d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z" transform="translate(28,26) scale(2.25)" fill="none"/>
                 </g>
                 <path class="trait accent onde o1" d="M86 26a16 16 0 0 1 9 13" fill="none"/>
                 <path class="trait accent onde o2" d="M94 18a26 26 0 0 1 14 21" fill="none"/>
@@ -196,8 +199,8 @@
                 <line class="trait ligne l2" x1="48" y1="40" x2="82" y2="40"/>
                 <line class="trait ligne l3" x1="48" y1="54" x2="72" y2="54"/>
                 <g class="coche">
-                  <circle cx="88" cy="70" r="14" fill="#e9a13b"/>
-                  <path d="M81 70l5 5 9-10" fill="none" stroke="#1c2b21" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                  <circle class="coche-fond" cx="88" cy="70" r="14"/>
+                  <path class="coche-trait" d="M81 70l5 5 9-10" fill="none" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
                 </g>
               </svg>
             </div>
@@ -220,12 +223,12 @@
                   <rect class="bande" x="-30" y="6" width="22" height="80" fill="rgba(250,245,236,0.28)" transform="skewX(-14)"/>
                 </g>
                 <g class="raclette">
-                  <line x1="30" y1="18" x2="30" y2="72" stroke="#e9a13b" stroke-width="5" stroke-linecap="round"/>
-                  <line x1="30" y1="45" x2="44" y2="45" stroke="#e9a13b" stroke-width="4" stroke-linecap="round"/>
+                  <line x1="30" y1="18" x2="30" y2="72" stroke="currentColor" stroke-width="5" stroke-linecap="round"/>
+                  <line x1="30" y1="45" x2="44" y2="45" stroke="currentColor" stroke-width="4" stroke-linecap="round"/>
                 </g>
-                <path class="etincelle e1" d="M46 34l2.2 6 6 2.2-6 2.2-2.2 6-2.2-6-6-2.2 6-2.2z" fill="#faf5ec"/>
-                <path class="etincelle e2" d="M66 52l1.8 5 5 1.8-5 1.8-1.8 5-1.8-5-5-1.8 5-1.8z" fill="#e9a13b"/>
-                <path class="etincelle e3" d="M84 30l1.5 4 4 1.5-4 1.5-1.5 4-1.5-4-4-1.5 4-1.5z" fill="#faf5ec"/>
+                <path class="etincelle e1" d="M46 34l2.2 6 6 2.2-6 2.2-2.2 6-2.2-6-6-2.2 6-2.2z"/>
+                <path class="etincelle e2" d="M66 52l1.8 5 5 1.8-5 1.8-1.8 5-1.8-5-5-1.8 5-1.8z"/>
+                <path class="etincelle e3" d="M84 30l1.5 4 4 1.5-4 1.5-1.5 4-1.5-4-4-1.5 4-1.5z"/>
               </svg>
             </div>
             <h3>On fait briller</h3>
@@ -314,7 +317,7 @@
               <span class="coord-ico">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>
               </span>
-              <span><small>Disponibilité</small><br />Lundi – samedi, 7h à 20h</span>
+              <span><small>Disponibilité</small><br />7 jours sur 7</span>
             </div>
           </div>
         </div>
@@ -378,6 +381,37 @@
       <p class="footer-bas">© 2026 MMG Nettoyage — Travail soigné · Respect des délais · Devis gratuit</p>
     </div>
   </footer>
+
+  <aside class="themes" id="themes" aria-label="Choisir un thème">
+    <button class="themes-toggle" type="button" id="themesToggle" aria-expanded="true">
+      Apparence
+    </button>
+    <div class="themes-panel" id="themesPanel">
+      <p>Essayer nos thèmes.</p>
+      <div class="themes-btns">
+        <button type="button" class="theme-btn" data-theme="foret" aria-pressed="true">
+          <span class="theme-swatch" style="--s1:#2c6e49;--s2:#e9a13b;--s3:#faf5ec"></span>
+          Forêt
+        </button>
+        <button type="button" class="theme-btn" data-theme="ocean" aria-pressed="false">
+          <span class="theme-swatch" style="--s1:#1d4e89;--s2:#e07a5f;--s3:#f3f7fb"></span>
+          Océan
+        </button>
+        <button type="button" class="theme-btn" data-theme="minuit" aria-pressed="false">
+          <span class="theme-swatch" style="--s1:#14110e;--s2:#e8c56a;--s3:#f6edd8"></span>
+          Minuit
+        </button>
+        <button type="button" class="theme-btn" data-theme="lavande" aria-pressed="false">
+          <span class="theme-swatch" style="--s1:#5c3d6e;--s2:#d4a0b3;--s3:#fbf6f8"></span>
+          Lavande
+        </button>
+        <button type="button" class="theme-btn" data-theme="citrus" aria-pressed="false">
+          <span class="theme-swatch" style="--s1:#0f766e;--s2:#f4c430;--s3:#fffdf6"></span>
+          Citrus
+        </button>
+      </div>
+    </div>
+  </aside>
 
   <a href="tel:0622179711" class="fab" aria-label="Appeler MMG Nettoyage">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>

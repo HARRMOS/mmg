@@ -2,6 +2,30 @@
 // MMG Nettoyage — interactions
 // ═══════════════════════════════════════════════════
 
+// ── Sélecteur de thèmes ──────────────────────────
+const themes = document.getElementById("themes");
+const themesToggle = document.getElementById("themesToggle");
+const themeBtns = document.querySelectorAll(".theme-btn");
+
+const appliquerTheme = (nom) => {
+  document.documentElement.dataset.theme = nom;
+  localStorage.setItem("mmg-theme", nom);
+  themeBtns.forEach((btn) => {
+    btn.setAttribute("aria-pressed", btn.dataset.theme === nom);
+  });
+};
+
+appliquerTheme(document.documentElement.dataset.theme || "foret");
+
+themeBtns.forEach((btn) => {
+  btn.addEventListener("click", () => appliquerTheme(btn.dataset.theme));
+});
+
+themesToggle.addEventListener("click", () => {
+  const replie = themes.classList.toggle("replié");
+  themesToggle.setAttribute("aria-expanded", String(!replie));
+});
+
 // ── Menu mobile ──────────────────────────────────
 const burger = document.getElementById("burger");
 const navMenu = document.getElementById("navMenu");
